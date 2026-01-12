@@ -1,0 +1,45 @@
+{
+  "name": "Damai Ticket Automation",
+  "image": "mcr.microsoft.com/devcontainers/universal:2",
+  "features": {
+    "ghcr.io/devcontainers/features/python:1": {
+      "version": "3.9"
+    },
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "20"
+    },
+    "ghcr.io/devcontainers/features/java:1": {
+      "version": "11",
+      "installMaven": false,
+      "installGradle": false
+    },
+    "ghcr.io/devcontainers/features/android:1": {
+      "sdkmanagerPackages": [
+        "platform-tools",
+        "platforms;android-33",
+        "build-tools;33.0.0",
+        "emulator",
+        "system-images;android-33;google_apis;x86_64"
+      ]
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "redhat.vscode-yaml",
+        "esbenp.prettier-vscode"
+      ]
+    }
+  },
+  "forwardPorts": [4723, 5554, 5555],
+  "portsAttributes": {
+    "4723": {
+      "label": "Appium Server",
+      "onAutoForward": "notify"
+    }
+  },
+  "postCreateCommand": "bash .devcontainer/setup.sh",
+  "postStartCommand": "echo '环境启动完成！'"
+}
