@@ -1,0 +1,13 @@
+#!/bin/bash
+echo "启动Android模拟器..."
+# 后台启动模拟器
+/usr/local/lib/android/sdk/emulator/emulator -avd Pixel_6_API_33 -no-window -no-audio -no-boot-anim &
+echo "等待模拟器启动..."
+sleep 30
+adb wait-for-device
+adb shell getprop sys.boot_completed | grep 1
+while [ $? -ne 0 ]; do
+    sleep 5
+    adb shell getprop sys.boot_completed | grep 1
+done
+echo "✅ 模拟器启动完成！"
